@@ -10,15 +10,17 @@
     - blue
     - green
 
-- name: Registra o ip do blue
-  register: blueip
-  shell: "docker inspect --format '{''{ .NetworkSettings.IPAddress }''}' blue"
+- name: Registra os ips
+  register: containerips
+  shell: "docker inspect --format '{''{ .NetworkSettings.IPAddress }''}' {{ item }}"
   ignore_errors: True
+  with_items:
+    - blue
+    - green
 
-- name: Registra o ip do green
-  register: greenip
-  shell: "docker inspect --format '{''{ .NetworkSettings.IPAddress }''}' green"
-  ignore_errors: True
+- set_fact:
+    blueip: "{{containerips.results[0].stdout}}"
+    greenip: "{{containerips.results[1].stdout}}"
 
 - name: Registra o ip do backend atual
   register: backendip
@@ -27,11 +29,11 @@
 
 - set_fact:
     ipcontainer: "{{blueip.stdout}}"
-  when: backendip.stdout == greenip.stdout or backendip.stdout == ''
+  when: backendip.stdout == greenip or backendip.stdout == ''
 
 - set_fact:
     ipcontainer: "{{greenip.stdout}}"
-  when: backendip.stdout == blueip.stdout
+  when: backendip.stdout == blueip
 
 - name: Reescreve o proxy.conf
   template:
