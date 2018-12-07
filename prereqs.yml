@@ -1,0 +1,7 @@
+---
+- name: Pre-requisitos
+  hosts: docker
+
+  roles:
+    - roles/pacotes
+    - roles/servicos

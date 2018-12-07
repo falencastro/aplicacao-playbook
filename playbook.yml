@@ -1,0 +1,6 @@
+---
+- name: Roda todos os playbooks
+  hosts: localhost
+
+- name: Chama o playbook de prerequisitos
+  import_playbook: prereqs.yml
