@@ -1,8 +1,8 @@
 [submodule "files/green"]
 	path = files/green
-	url = http://devops.dexter.com.br/root/aplicacao.git
+	url = https://github.com/falencastro/aplicacao.git
 	branch = green
 [submodule "files/blue"]
 	path = files/blue
-	url = http://devops.dexter.com.br/root/aplicacao.git
+	url = https://github.com/falencastro/aplicacao.git
 	branch = blue
