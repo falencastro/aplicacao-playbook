@@ -1,2 +1,10 @@
 ---
 # tasks file for servicos
+- name: Inicia os servicos
+  service:
+    name: "{{item}}"
+    enabled: yes
+    state: started
+  with_items:
+    - docker
+    - nginx
