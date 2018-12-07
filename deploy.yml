@@ -1,0 +1,12 @@
+---
+- name: Faz o deploy da aplicacao
+  hosts: docker
+
+  tasks:
+    - name: Copia a aplicacao para o volume do container
+      copy:
+        src: "files/{{item}}/index.html"
+        dest: "/srv/{{item}}"
+      with_items:
+        - blue
+        - green

@@ -7,3 +7,6 @@
 
 - name: Chama o playbook do docker
   import_playbook: docker.yml
+
+- name: Chama o playbook de deploy
+  import_playbook: deploy.yml
