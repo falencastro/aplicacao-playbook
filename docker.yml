@@ -1,0 +1,6 @@
+---
+- name: Sobe container do docker
+  hosts: docker
+
+  roles:
+    - roles/docker
