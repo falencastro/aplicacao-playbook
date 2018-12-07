@@ -1,11 +1,8 @@
-[submodule "files/aplicacao"]
-	path = files/aplicacao
-	url = http://root:$icredi123!@devops.dexter.com.br/root/aplicacao.git
 [submodule "files/green"]
 	path = files/green
-	url = http://root:$icredi123!@devops.dexter.com.br/root/aplicacao.git
+	url = http://devops.dexter.com.br/root/aplicacao.git
 	branch = green
 [submodule "files/blue"]
 	path = files/blue
-	url = http://root:$icredi123!@devops.dexter.com.br/root/aplicacao.git
+	url = http://devops.dexter.com.br/root/aplicacao.git
 	branch = blue
