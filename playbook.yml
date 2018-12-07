@@ -4,3 +4,6 @@
 
 - name: Chama o playbook de prerequisitos
   import_playbook: prereqs.yml
+
+- name: Chama o playbook do docker
+  import_playbook: docker.yml
