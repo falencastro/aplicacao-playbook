@@ -28,11 +28,11 @@
   ignore_errors: True
 
 - set_fact:
-    ipcontainer: "{{blueip.stdout}}"
+    ipcontainer: "{{blueip}}"
   when: backendip.stdout == greenip or backendip.stdout == ''
 
 - set_fact:
-    ipcontainer: "{{greenip.stdout}}"
+    ipcontainer: "{{greenip}}"
   when: backendip.stdout == blueip
 
 - name: Reescreve o proxy.conf
