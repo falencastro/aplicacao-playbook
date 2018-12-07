@@ -9,3 +9,11 @@
   with_items:
     - blue
     - green
+
+- name: Registra o ip dos containers
+  register: "{{item}}_result"
+  shell: "docker inspect --format '{''{ .NetworkSettings.IPAddress }''}' {{item}}"
+  ignore_errors: True
+  with_items:
+    - blue
+    - green
