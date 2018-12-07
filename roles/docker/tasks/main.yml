@@ -11,9 +11,32 @@
     - green
 
 - name: Registra o ip dos containers
-  register: "{{item}}_result"
+  register: "{{item}}ip"
   shell: "docker inspect --format '{''{ .NetworkSettings.IPAddress }''}' {{item}}"
   ignore_errors: True
   with_items:
     - blue
     - green
+
+- name: Registra o ip do backend atual
+  register: backendip
+  shell: "cat /etc/nginx/sites-enabled/proxy.conf|awk -F 'http://|;' 'NR==4 { print $2 }'"
+  ignore_errors: True
+
+- set_fact:
+    ipcontainer: blueip.stdout
+  when: backendip.stdout == greenip.stdout or backendip.stdout == null
+
+- set_fact:
+    ipcontainer: green.stdout
+  when: backendip.stdout == blue.stdout
+
+- name: Reescreve o proxy.conf
+  template:
+    src: templates/proxy.conf.j2
+    dest: /etc/nginx/sites-enabled/proxy.conf
+
+- name: Recarrega o nginx
+  service:
+    name: nginx
+    state: reloaded
