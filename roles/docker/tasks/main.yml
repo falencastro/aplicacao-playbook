@@ -1,0 +1,11 @@
+---
+# tasks file for docker
+- name: Garante que um container do apache esteja rodando
+  docker_container:
+    name: "{{item}"
+    image: httpd
+    volumes:
+      - "/srv/{{item}}:/usr/local/apache2/htdocs/"
+  with_items:
+    - blue
+    - green
